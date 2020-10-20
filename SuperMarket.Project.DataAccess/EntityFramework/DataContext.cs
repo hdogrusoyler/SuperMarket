@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using SuperMarket.Project.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace SuperMarket.Project.DataAccess.EntityFramework
@@ -18,7 +20,15 @@ namespace SuperMarket.Project.DataAccess.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=LAPTOP-TAPMU7Q5\\SQLEXPRESS;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+
+            //IConfigurationRoot configuration = new ConfigurationBuilder()
+            //    //.SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+            //    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            //    .AddJsonFile("appsettings.json")
+            //    .Build();
+            //optionsBuilder.UseSqlServer(configuration.GetConnectionString("CinemaDbContext"));
+
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {

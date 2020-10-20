@@ -9,7 +9,7 @@ using SuperMarket.Project.DataAccess.EntityFramework;
 namespace SuperMarket.Project.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201020013428_createDatabase")]
+    [Migration("20201020065739_createDatabase")]
     partial class createDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
