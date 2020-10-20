@@ -1,0 +1,63 @@
+﻿@model SuperMarket.Project.Entity.Cart
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("ProductName")
+            </th>
+            <th>
+                @Html.DisplayName("CategoryName")
+            </th>
+            <th>
+                @Html.DisplayName("Amount")
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+            <th>
+                @Html.DisplayName("StockAmount")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CartProducts != null)
+        {
+            @foreach (var item in Model.CartProducts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Category.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.StockAmount)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="CompleteCart" asp-route-id="@Model.Id">Go To Payment</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
