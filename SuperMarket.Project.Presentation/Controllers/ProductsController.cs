@@ -62,7 +62,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,ProductName,CategoryId,StockAmount,Price")] Product product)
         {
             if (ModelState.IsValid)
@@ -90,7 +89,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,ProductName,CategoryId,StockAmount,Price")] Product product)
         {
             if (id != product.Id)
@@ -135,7 +133,6 @@ namespace SuperMarket.Project.Presentation.Controllers
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var product = productService.GetById(id);
@@ -145,7 +142,6 @@ namespace SuperMarket.Project.Presentation.Controllers
 
         // POST: Products/AddToCart/5
         [HttpPost, ActionName("AddToCart")]
-        [ValidateAntiForgeryToken]
         public IActionResult AddToCart(int id)
         {
             var idf = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier)

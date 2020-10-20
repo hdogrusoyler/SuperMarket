@@ -60,7 +60,6 @@ namespace SuperMarket.Project.Presentation.Controllers
 
         // POST: Carts/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var cart = cartProductService.GetById(id);
@@ -81,7 +80,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         }
 
         [HttpPost, ActionName("CompleteCart")]
-        [ValidateAntiForgeryToken]
         public IActionResult CompleteCartSales(int id, int paymentTypeId)
         {
             var cart = cartService.GetById(id);

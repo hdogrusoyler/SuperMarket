@@ -29,6 +29,9 @@ namespace SuperMarket.Project.DataAccess.EntityFramework
             //optionsBuilder.UseSqlServer(configuration.GetConnectionString("CinemaDbContext"));
 
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            //optionsBuilder.UseSqlServer("Server=LAPTOP-TAPMU7Q5\\SQLEXPRESS;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            //optionsBuilder.UseSqlServer("Server=EC2AMAZ-QA714VO\\SQLEXPRESS;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true;Max Pool Size=100;Connect Timeout=3600;");
+            
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {

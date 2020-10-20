@@ -49,7 +49,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,PaymentTypeName")] PaymentType paymentType)
         {
             if (ModelState.IsValid)
@@ -75,7 +74,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,PaymentTypeName")] PaymentType paymentType)
         {
             if (id != paymentType.Id)
@@ -119,7 +117,6 @@ namespace SuperMarket.Project.Presentation.Controllers
 
         // POST: PaymentTypes/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var paymentType = paymentTypeService.GetById(id);

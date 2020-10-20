@@ -52,7 +52,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
@@ -78,7 +77,6 @@ namespace SuperMarket.Project.Presentation.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,CategoryName")] Category category)
         {
             if (id != category.Id)
@@ -122,7 +120,6 @@ namespace SuperMarket.Project.Presentation.Controllers
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var category = categoryService.GetById(id);
