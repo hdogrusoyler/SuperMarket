@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Core", "Project.Core\Project.Core.csproj", "{4CD55292-E42C-4E74-BEC2-99A7DA63BB26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Core", "Project.Core\Project.Core.csproj", "{4CD55292-E42C-4E74-BEC2-99A7DA63BB26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Project.DataAccess", "SuperMarket.Project.DataAccess\SuperMarket.Project.DataAccess.csproj", "{00F45E3D-411B-494B-A812-72CAEB655FA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.DataAccess", "SuperMarket.Project.DataAccess\SuperMarket.Project.DataAccess.csproj", "{00F45E3D-411B-494B-A812-72CAEB655FA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Project.BusinessLogic", "SuperMarket.Project.BusinessLogic\SuperMarket.Project.BusinessLogic.csproj", "{873A779F-0B43-4617-9091-01F36056FCFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.BusinessLogic", "SuperMarket.Project.BusinessLogic\SuperMarket.Project.BusinessLogic.csproj", "{873A779F-0B43-4617-9091-01F36056FCFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Project.Entity", "SuperMarket.Project.Entity\SuperMarket.Project.Entity.csproj", "{91455A95-189A-4B79-A714-0B3EABF95AB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.Entity", "SuperMarket.Project.Entity\SuperMarket.Project.Entity.csproj", "{91455A95-189A-4B79-A714-0B3EABF95AB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Project.Presentation", "SuperMarket.Project.Presentation\SuperMarket.Project.Presentation.csproj", "{A3AABB93-3F4D-4389-9254-4AC684F18C7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.Presentation", "SuperMarket.Project.Presentation\SuperMarket.Project.Presentation.csproj", "{A3AABB93-3F4D-4389-9254-4AC684F18C7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Project.WebAPI", "SuperMarket.Project.WebAPI\SuperMarket.Project.WebAPI.csproj", "{DCB70D28-36BA-4691-A63A-36BECC35044C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A3AABB93-3F4D-4389-9254-4AC684F18C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3AABB93-3F4D-4389-9254-4AC684F18C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3AABB93-3F4D-4389-9254-4AC684F18C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB70D28-36BA-4691-A63A-36BECC35044C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB70D28-36BA-4691-A63A-36BECC35044C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB70D28-36BA-4691-A63A-36BECC35044C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB70D28-36BA-4691-A63A-36BECC35044C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
