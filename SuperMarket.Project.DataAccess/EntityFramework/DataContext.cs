@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using SuperMarket.Project.Entity;
+using SuperMarket.Project.Entity.CustomModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,44 +40,68 @@ namespace SuperMarket.Project.DataAccess.EntityFramework
             return result;
         }
 
-        private List<SalesInformation> OnBeforeSaveChanges()
+        private EntityEntryList OnBeforeSaveChanges()
         {
             //var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
-            List<SalesInformation> list = new List<SalesInformation>();
+            EntityEntryList list = new EntityEntryList();
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.State == EntityState.Detached || entry.State == EntityState.Unchanged || entry.State == EntityState.Modified || entry.State == EntityState.Deleted)
+                if (entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
                     continue;
-                if (entry.Entity is SalesInformation ent && entry.State == EntityState.Added)
+                if (entry.Entity is CartProduct)
                 {
-                    list.Add((SalesInformation)entry.Entity);
-                    //foreach (var item in ent.Cart.CartProducts)
-                    //{
-                    //    Product pro = new Product();
-                    //    pro.Id = item.Product.Id;
-                    //    pro = Products.Find(pro);
-                    //    pro.StockAmount -= item.ProductAmount;
-                    //    Products.Update(pro);
-                    //}
+                    if (entry.State == EntityState.Added)
+                    {
+                        list.AddedEntityState = true;
+                        list.AddedCartProductList.Add((CartProduct)entry.Entity);
+                    }
+                    else if (entry.State == EntityState.Modified)
+                    {
+                        list.ModifiedEntityState = true;
+                        list.ModifiedCartProductList.Add((CartProduct)entry.Entity);
+                    }
+                    else if (entry.State == EntityState.Deleted)
+                    {
+                        list.DeletedEntityState = true;
+                        list.DeletedCartProductList.Add((CartProduct)entry.Entity);
+                    }
                 }
             }
             return list;
         }
 
-        private void OnAfterSaveChanges(List<SalesInformation> list)
+        private void OnAfterSaveChanges(EntityEntryList list)
         {
             //var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
-            if (list != null && list.Count > 0)
+
+            Product pro = new Product();
+            if (list.AddedCartProductList != null && list.AddedCartProductList.Count > 0 && list.AddedEntityState == true)
             {
-                foreach (var ent in list)
+                foreach (var item in list.AddedCartProductList)
                 {
-                    foreach (var item in ent.Cart.CartProducts)
-                    {
-                        Product pro = new Product();
-                        pro = Products.Find(item.Product.Id);
-                        pro.StockAmount -= item.ProductAmount;
-                        Products.Update(pro);
-                    }
+                    pro = Products.Find(item.ProductId);
+                    pro.StockAmount -= 1;
+                    Products.Update(pro);
+                }
+                SaveChanges();
+            }
+            else if (list.ModifiedCartProductList != null && list.ModifiedCartProductList.Count > 0 && list.ModifiedEntityState == true)
+            {
+                foreach (var item in list.ModifiedCartProductList)
+                {
+                    pro = Products.Find(item.ProductId);
+                    pro.StockAmount -= 1;
+                    Products.Update(pro);
+                }
+                SaveChanges();
+            }
+            else if (list.DeletedCartProductList != null && list.DeletedCartProductList.Count > 0 && list.DeletedEntityState == true)
+            {
+                foreach (var item in list.DeletedCartProductList)
+                {
+                    pro = Products.Find(item.ProductId);
+                    pro.StockAmount += item.ProductAmount;
+                    Products.Update(pro);
                 }
                 SaveChanges();
             }
