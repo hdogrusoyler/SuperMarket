@@ -31,7 +31,7 @@ namespace SuperMarket.Project.Presentation
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DataConnection"), b => b.MigrationsAssembly("Solution.Project.WebApplication.Presentation"));
-                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
             services.AddControllersWithViews();
