@@ -19,9 +19,9 @@ namespace SuperMarket.Project.Presentation.Controllers
         //private readonly DataContext _context;
         private ICategoryService categoryService;
 
-        public CategoriesController()
+        public CategoriesController(ICategoryService _categoryService)
         {
-            categoryService = new CategoryManager();
+            categoryService = _categoryService;
         }
 
         // GET: Categories

@@ -15,7 +15,7 @@ namespace SuperMarket.Project.DataAccess
         public IPaymentTypeDal efPaymentTypeDal { get; set; }
         void BeginTransaction();
         string CommitSaveChanges();
-        //void Save();
-        //void Dispose();
+        int Save();
+        void Dispose();
     }
 }

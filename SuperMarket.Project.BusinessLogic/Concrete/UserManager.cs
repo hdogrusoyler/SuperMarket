@@ -10,9 +10,9 @@ namespace SuperMarket.Project.BusinessLogic.Concrete
     public class UserManager : IUserService
     {
         IUnitOfWork _unitOfWork;
-        public UserManager()
+        public UserManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public List<User> GetAll(int page = 1, int pageSize = 0)

@@ -21,10 +21,10 @@ namespace SuperMarket.Project.Presentation.Controllers
         private readonly ILogger<HomeController> _logger;
         private IUserService userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUserService _userService)
         {
             _logger = logger;
-            userService = new UserManager();
+            userService = _userService;
         }
 
         public IActionResult Index()

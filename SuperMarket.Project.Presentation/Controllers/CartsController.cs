@@ -21,13 +21,13 @@ namespace SuperMarket.Project.Presentation.Controllers
         private IPaymentTypeService paymentTypeService;
         private IUserService userService;
 
-        public CartsController()
+        public CartsController(ICartService _cartService, ICartProductService _cartProductService, ISalesInformationService _salesInformationService, IPaymentTypeService _paymentTypeService, IUserService _userService)
         {
-            cartService = new CartManager();
-            cartProductService = new CartProductManager();
-            salesInformationService = new SalesInformationManager();
-            paymentTypeService = new PaymentTypeManager();
-            userService = new UserManager();
+            cartService = _cartService;
+            cartProductService = _cartProductService;
+            salesInformationService = _salesInformationService;
+            paymentTypeService = _paymentTypeService;
+            userService = _userService;
         }
 
         // GET: Carts
@@ -38,9 +38,7 @@ namespace SuperMarket.Project.Presentation.Controllers
             Cart cart = cartService.GetLastCartIsNotPaid(Convert.ToInt32(idf));
             if (cart == null)
             {
-                cartService.Add(new Cart() { UserId = Convert.ToInt32(idf) });
-                cartService = new CartManager();
-                cart = cartService.GetLastCartIsNotPaid(Convert.ToInt32(idf));
+                cart = cartService.AddAndGetLastCartIsNotPaid(new Cart() { UserId = Convert.ToInt32(idf) });
             }
             //List<Cart> list = cartService.GetAll();
             return View(cart);
@@ -82,15 +80,15 @@ namespace SuperMarket.Project.Presentation.Controllers
         [HttpPost, ActionName("CompleteCart")]
         public IActionResult CompleteCartSales(int id, int paymentTypeId)
         {
-            var cart = cartService.GetById(id);
+            Cart cart = new Cart();
+            cart = cartService.GetById(id);
             int total = 0;
             foreach (var item in cart.CartProducts)
             {
                 total += item.ProductAmount * item.Product.Price;
             }
-            salesInformationService.Add(new SalesInformation() { CartId = cart.Id, PaymentTypeId = paymentTypeId, TotalPrice= total });
-            cart.isPaymentCompleted = true;
-            cartService.Update(cart);
+            SalesInformation salesInfo = new SalesInformation() { CartId = cart.Id, PaymentTypeId = paymentTypeId, TotalPrice = total };
+            cartService.UpdateAndSalesInformationAdd(cart, salesInfo);
             return RedirectToAction(nameof(Index), "Products");
         }
 

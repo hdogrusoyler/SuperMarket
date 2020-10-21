@@ -17,19 +17,17 @@ namespace SuperMarket.Project.Presentation.Controllers
     [Authorize]
     public class ProductsController : Controller
     {
-        //private readonly DataContext _context;
         private IProductService productService;
         private ICategoryService categoryService;
         private ICartService cartService;
         private ICartProductService cartProductService;
 
-        public ProductsController()
+        public ProductsController(IProductService _productService, ICategoryService _categoryService, ICartService _cartService, ICartProductService _cartProductService)
         {
-            //_context = context;
-            productService = new ProductManager();
-            categoryService = new CategoryManager();
-            cartService = new CartManager();
-            cartProductService = new CartProductManager();
+            productService = _productService;
+            categoryService = _categoryService;
+            cartService = _cartService;
+            cartProductService = _cartProductService;
         }
 
         // GET: Products
@@ -146,23 +144,7 @@ namespace SuperMarket.Project.Presentation.Controllers
         {
             var idf = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier)
                .Select(c => c.Value).SingleOrDefault();
-            Cart cart = cartService.GetLastCartIsNotPaid(Convert.ToInt32(idf));
-            if (cart == null)
-            {
-                cartService.Add(new Cart() { UserId = Convert.ToInt32(idf) });
-                cartService = new CartManager();
-                cart = cartService.GetLastCartIsNotPaid(Convert.ToInt32(idf));
-            }
-            CartProduct cartProduct = cartProductService.GetByProductId(id, cart.Id);
-            if (cartProduct != null)
-            {
-                cartProduct.ProductAmount += 1;
-                cartProductService.Update(cartProduct);
-            }
-            else
-            {
-                cartProductService.Add(new CartProduct() { CartId = cart.Id, ProductId = Convert.ToInt32(id), ProductAmount = 1 });
-            }
+            cartService.CheckCartAndAddProduct(id, Convert.ToInt32(idf));
             return RedirectToAction(nameof(Index));
         }
 

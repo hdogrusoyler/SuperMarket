@@ -15,9 +15,9 @@ namespace SuperMarket.Project.WebAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private IProductService productService;
-        public ProductsController()
+        public ProductsController(IProductService _productService)
         {
-            productService = new ProductManager();
+            productService = _productService;
         }
 
         [HttpGet]

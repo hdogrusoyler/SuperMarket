@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SuperMarket.Project.Entity;
 using System;
@@ -10,35 +11,24 @@ namespace SuperMarket.Project.DataAccess.EntityFramework
 {
     public class DataContext : DbContext
     {
-        //public DataContext(DbContextOptions<DataContext> options) : base(options)
-        //{ }
-        public DataContext()
+        //private readonly IHttpContextAccessor _httpContextAccessor;
+        public DataContext(DbContextOptions<DataContext> options) : base(options) //, IHttpContextAccessor httpContextAccessor
         {
-            this.ChangeTracker.AutoDetectChangesEnabled = false;
+            //_httpContextAccessor = httpContextAccessor;
         }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    base.OnConfiguring(optionsBuilder);
+        //}
 
-            //IConfigurationRoot configuration = new ConfigurationBuilder()
-            //    //.SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
-            //    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            //    .AddJsonFile("appsettings.json")
-            //    .Build();
-            //optionsBuilder.UseSqlServer(configuration.GetConnectionString("CinemaDbContext"));
-
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true");
-            //optionsBuilder.UseSqlServer("Server=LAPTOP-TAPMU7Q5\\SQLEXPRESS;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true");
-            //optionsBuilder.UseSqlServer("Server=EC2AMAZ-QA714VO\\SQLEXPRESS;Database=MarketDb;Trusted_Connection=True;MultipleActiveResultSets=true;Max Pool Size=100;Connect Timeout=3600;");
-            
-        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
                 .HasIndex(u => u.UserName)
                 .IsUnique();
         }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

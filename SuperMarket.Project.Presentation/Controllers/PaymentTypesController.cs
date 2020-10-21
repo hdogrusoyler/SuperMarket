@@ -16,9 +16,9 @@ namespace SuperMarket.Project.Presentation.Controllers
     {
         private IPaymentTypeService paymentTypeService;
 
-        public PaymentTypesController()
+        public PaymentTypesController(IPaymentTypeService _paymentTypeService)
         {
-            paymentTypeService = new PaymentTypeManager();
+            paymentTypeService = _paymentTypeService;
         }
 
         // GET: PaymentTypes

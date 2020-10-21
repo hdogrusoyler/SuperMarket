@@ -16,9 +16,9 @@ namespace SuperMarket.Project.Presentation.Controllers
     {
         private ISalesInformationService salesInformationService;
 
-        public SalesInformationsController()
+        public SalesInformationsController(ISalesInformationService _salesInformationService)
         {
-            salesInformationService = new SalesInformationManager();
+            salesInformationService = _salesInformationService;
         }
 
         // GET: SalesInformations

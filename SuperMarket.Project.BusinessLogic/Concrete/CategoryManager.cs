@@ -10,9 +10,9 @@ namespace SuperMarket.Project.BusinessLogic.Concrete
     public class CategoryManager : ICategoryService
     {
         IUnitOfWork _unitOfWork;
-        public CategoryManager()
+        public CategoryManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public List<Category> GetAll(int page = 1, int pageSize = 0)

@@ -11,9 +11,9 @@ namespace SuperMarket.Project.BusinessLogic.Concrete
     public class CartProductManager : ICartProductService
     {
         IUnitOfWork _unitOfWork;
-        public CartProductManager()
+        public CartProductManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public List<CartProduct> GetAll(int page = 1, int pageSize = 0)

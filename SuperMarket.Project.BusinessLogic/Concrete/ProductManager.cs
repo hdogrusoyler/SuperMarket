@@ -11,9 +11,9 @@ namespace SuperMarket.Project.BusinessLogic.Concrete
     public class ProductManager : IProductService
     {
         IUnitOfWork _unitOfWork;
-        public ProductManager()
+        public ProductManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public List<Product> GetAll(int page = 1, int pageSize = 0)

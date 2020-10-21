@@ -11,9 +11,9 @@ namespace SuperMarket.Project.BusinessLogic.Concrete
     public class SalesInformationManager : ISalesInformationService
     {
         IUnitOfWork _unitOfWork;
-        public SalesInformationManager()
+        public SalesInformationManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public List<SalesInformation> GetAll(int page = 1, int pageSize = 0)

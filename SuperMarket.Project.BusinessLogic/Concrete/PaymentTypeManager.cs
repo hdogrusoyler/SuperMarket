@@ -10,9 +10,9 @@ namespace SuperMarket.Project.BusinessLogic.Concrete
     public class PaymentTypeManager : IPaymentTypeService
     {
         IUnitOfWork _unitOfWork;
-        public PaymentTypeManager()
+        public PaymentTypeManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public List<PaymentType> GetAll(int page = 1, int pageSize = 0)

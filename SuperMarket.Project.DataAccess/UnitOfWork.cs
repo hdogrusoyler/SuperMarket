@@ -17,16 +17,25 @@ namespace SuperMarket.Project.DataAccess
         public ICartProductDal efCartProductDal { get; set; }
         public ISalesInformationDal efSalesInformationDal { get; set; }
         public IPaymentTypeDal efPaymentTypeDal { get; set; }
-        public UnitOfWork()
+        public UnitOfWork(DataContext context, IUserDal _efUserDal, IProductDal _efProductDal, ICategoryDal _efCategoryDal, ICartDal _efCartDal, ICartProductDal _efCartProductDal, ISalesInformationDal _efSalesInformationDal, IPaymentTypeDal _efPaymentTypeDal)
         {
-            _context = new DataContext();
-            efUserDal = new EfUserDal(_context);
-            efProductDal = new EfProductDal(_context);
-            efCategoryDal = new EfCategoryDal(_context);
-            efCartDal = new EfCartDal(_context);
-            efCartProductDal = new EfCartProductDal(_context);
-            efSalesInformationDal = new EfSalesInformationDal(_context);
-            efPaymentTypeDal = new EfPaymentTypeDal(_context);
+            _context = context;
+            efUserDal = _efUserDal;
+            efProductDal = _efProductDal;
+            efCategoryDal = _efCategoryDal;
+            efCartDal = _efCartDal;
+            efCartProductDal = _efCartProductDal;
+            efSalesInformationDal = _efSalesInformationDal;
+            efPaymentTypeDal = _efPaymentTypeDal;
+
+            //_context = new DataContext();
+            //efUserDal = new EfUserDal(_context);
+            //efProductDal = new EfProductDal(_context);
+            //efCategoryDal = new EfCategoryDal(_context);
+            //efCartDal = new EfCartDal(_context);
+            //efCartProductDal = new EfCartProductDal(_context);
+            //efSalesInformationDal = new EfSalesInformationDal(_context);
+            //efPaymentTypeDal = new EfPaymentTypeDal(_context);
         }
         public void BeginTransaction()
         {
