@@ -9,6 +9,9 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<input type="hidden" id="cart" name="cart" value="@TempData["AddedToCart"]" />
+
 <table class="table">
     <thead>
         <tr>
@@ -28,30 +31,62 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StockAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <form asp-controller="Products" asp-action="AddToCart">
-                    <input type="hidden" name="id" value="@item.Id" />
-                    <input type="submit" value="AddToCart" class="btn btn-link" />
-                </form>
-                <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <form asp-controller="Products" asp-action="AddToCart">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="submit" value="AddToCart" class="btn btn-link" />
+                    </form>
+                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>*@
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                The Product has been successfully added to the cart!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+}

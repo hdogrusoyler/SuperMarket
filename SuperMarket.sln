@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.Entity"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.Presentation", "SuperMarket.Project.Presentation\SuperMarket.Project.Presentation.csproj", "{A3AABB93-3F4D-4389-9254-4AC684F18C7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Project.WebAPI", "SuperMarket.Project.WebAPI\SuperMarket.Project.WebAPI.csproj", "{DCB70D28-36BA-4691-A63A-36BECC35044C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Project.WebAPI", "SuperMarket.Project.WebAPI\SuperMarket.Project.WebAPI.csproj", "{DCB70D28-36BA-4691-A63A-36BECC35044C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

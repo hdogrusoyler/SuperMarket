@@ -145,6 +145,7 @@ namespace SuperMarket.Project.Presentation.Controllers
             var idf = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier)
                .Select(c => c.Value).SingleOrDefault();
             cartService.CheckCartAndAddProduct(id, Convert.ToInt32(idf));
+            TempData["AddedToCart"] = "success";
             return RedirectToAction(nameof(Index));
         }
 
